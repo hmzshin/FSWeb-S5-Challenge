@@ -16,9 +16,19 @@ const Tablar = (konu) => {
   tabThirdDiv.classList.add("tab");
   tabThirdDiv.textContent = konu[2];
 
+  const tabFourthDiv = document.createElement("div");
+  tabFourthDiv.classList.add("tab");
+  tabFourthDiv.textContent = konu[3];
+
+  const tabFifthDiv = document.createElement("div");
+  tabFifthDiv.classList.add("tab");
+  tabFifthDiv.textContent = konu[4];
+
   topicsDiv.append(tabFirstDiv);
   topicsDiv.append(tabSecondDiv);
   topicsDiv.append(tabThirdDiv);
+  topicsDiv.append(tabFourthDiv);
+  topicsDiv.append(tabFifthDiv);
 
   return topicsDiv;
   // GÖREV 3
@@ -41,10 +51,12 @@ const tabEkleyici = (secici) => {
   axios({
     method: "get",
     url: "http://localhost:5001/api/konular",
-    data: {
-      firstName: "Fred",
-      lastName: "Flintstone",
-    },
+  }).then(function (response) {
+    console.log(response.data["konular"]);
+    const tab = Tablar(response.data["konular"]);
+    console.log(tab);
+    const tabs = document.querySelector(secici);
+    tabs.append(tab);
   });
   // GÖREV 4
   // ---------------------
