@@ -52,9 +52,7 @@ const tabEkleyici = (secici) => {
     method: "get",
     url: "http://localhost:5001/api/konular",
   }).then(function (response) {
-    console.log(response.data["konular"]);
     const tab = Tablar(response.data["konular"]);
-    console.log(tab);
     const tabs = document.querySelector(secici);
     tabs.append(tab);
   });

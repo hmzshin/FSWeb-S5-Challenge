@@ -36,7 +36,7 @@ const headerEkleyici = (secici) => {
   const title = "The Best Programmer in the World";
   const date = " 10.20.2023";
   const content =
-    "The best programmers are educated from WORKINTECH and  Hamza ŞAHİN is one of them.";
+    "The best programmers are educated by WORKINTECH, and Hamza ŞAHİN is one of them.";
 
   const newHeader = Header(title, date, content);
 
