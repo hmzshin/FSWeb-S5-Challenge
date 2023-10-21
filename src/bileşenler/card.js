@@ -24,9 +24,21 @@ const Card = (makale) => {
   span.textContent = makale.yazarAdi + " " + "tarafından";
   authorDiv.append(span);
 
+  // adding style to card
+
+  cardDiv.style.borderRadius = "10px";
+
   // adding eventListner to card
   cardDiv.addEventListener("click", () => {
     console.log(headLineDiv.textContent);
+  });
+
+  cardDiv.addEventListener("mouseover", () => {
+    cardDiv.style.transform = "scale(1.05) ";
+    cardDiv.style.transsition = "5s";
+  });
+  cardDiv.addEventListener("mouseleave", () => {
+    cardDiv.style.transform = "scale(1) ";
   });
 
   return cardDiv;
