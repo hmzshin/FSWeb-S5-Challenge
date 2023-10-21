@@ -1,6 +1,6 @@
 import axios from "axios";
-  // GÖREV 3
-  // ---------------------
+// GÖREV 3
+// ---------------------
 
 const Tablar = (konu) => {
   const topicsDiv = document.createElement("div");
@@ -47,18 +47,25 @@ const Tablar = (konu) => {
   // </div>
   //
 };
-  // GÖREV 4
-  // ---------------------
+// GÖREV 4
+// ---------------------
 const tabEkleyici = (secici) => {
   axios({
     method: "get",
     url: "http://localhost:5001/api/konular",
-  }).then(function (response) {
-    const tab = Tablar(response.data["konular"]);
-    const tabs = document.querySelector(secici);
-    tabs.append(tab);
-  });
-
+  })
+    .then(function (response) {
+      const tab = Tablar(response.data["konular"]);
+      const tabs = document.querySelector(secici);
+      tabs.append(tab);
+    })
+    .catch((error) => {
+      alert("sunucu bulunamadı", error);
+      console.log(error);
+    })
+    .finally(() => {
+      console.log("Tabs are loaded!");
+    });
 
   // Tek argümanı olarak bir css seçici alan bu işlevi uygulayın.
   // Konuları bu uç noktadan almalıdır: `http://localhost:5001/api/konular` (console.log ile test edin!).

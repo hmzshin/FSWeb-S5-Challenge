@@ -27,6 +27,7 @@ const Card = (makale) => {
   // adding style to card
 
   cardDiv.style.borderRadius = "10px";
+  // $(".card").lightbox({ transition: "scale 0.1s" });
 
   // adding eventListner to card
   cardDiv.addEventListener("click", () => {
@@ -35,7 +36,6 @@ const Card = (makale) => {
 
   cardDiv.addEventListener("mouseover", () => {
     cardDiv.style.transform = "scale(1.05) ";
-    cardDiv.style.transsition = "5s";
   });
   cardDiv.addEventListener("mouseleave", () => {
     cardDiv.style.transform = "scale(1) ";
@@ -67,21 +67,26 @@ const cardEkleyici = (secici) => {
   axios({
     method: "get",
     url: "http://localhost:5001/api/makaleler",
-  }).then(function (response) {
-    const datas = response.data.makaleler;
-    const arr = Object.values(datas);
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < arr[i].length; j++) {
-        let obje = arr[i][j];
-        const card = Card(obje);
-        const box = document.querySelector(secici);
-        box.append(card);
+  })
+    .then(function (response) {
+      const datas = response.data.makaleler;
+      const arr = Object.values(datas);
+      for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+          let obje = arr[i][j];
+          const card = Card(obje);
+          const box = document.querySelector(secici);
+          box.append(card);
+        }
       }
-    }
-    console.log("datas", datas);
-
-    console.log("obje", arr);
-  });
+    })
+    .catch((error) => {
+      alert("sunucu bulunamadı", error);
+      console.error(error);
+    })
+    .finally(() => {
+      console.log("Cards are loaded!");
+    });
 };
 
 // GÖREV 6
